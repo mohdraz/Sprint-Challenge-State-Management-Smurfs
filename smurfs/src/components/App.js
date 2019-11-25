@@ -12,23 +12,27 @@ const App = props => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="container">
       <h1>SMURFS! 2.0 W/ Redux</h1>
+      <div className="form">
+        <SmurfForm addSmurf={props.addSmurf} />
+      </div>
+
+      <button onClick={props.fetchSmurfs}>Refresh Data</button>
 
       {/* api calls */}
 
       {props.isError && <div>{props.isError}</div>}
-
+      <h2>Our Smurfs</h2>
       {props.isLoading ? (
         <div>Loading Data....</div>
       ) : (
-        props.smurfs.map(smurf => <Smurf key={smurf.id} smurf={smurf} />)
+        <section className="cardContainer">
+          {props.smurfs.map(smurf => (
+            <Smurf key={smurf.id} smurf={smurf} />
+          ))}
+        </section>
       )}
-
-      <div className="form">
-        <SmurfForm addSmurf={props.addSmurf} />
-      </div>
-      <button onClick={props.fetchSmurfs}>Refresh Data</button>
     </div>
   );
 };

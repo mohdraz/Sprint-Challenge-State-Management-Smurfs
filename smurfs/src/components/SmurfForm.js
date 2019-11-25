@@ -8,7 +8,7 @@ const SmurfForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.addSmurf({ name, age, height });
+    props.addSmurf({ name, age, height, id: Date.now() });
     setName("");
     setAge("");
     setHeight("");
